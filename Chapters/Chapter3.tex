@@ -1,0 +1,43 @@
+% Proposal / Objective
+% Motivation
+
+% Chapter Template
+
+\chapter{Objective} % Main chapter title
+
+\label{Chapter 3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 3. \emph{Objective}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%---------------------------------------------------------------------------------------
+\section{Problem Motivation}
+
+\begin{itemize}
+    \item Serverless platforms isolate and execute functions in separate containers, and do not exploit the interactions among functions for performance. These practices lead to high startup delays for function executions and inefficient resource usage.
+    \item Many of such applications interact with a database in the backend. Even if we ignore the startup delays, in the normal executions also when the container is warm, the delay is 5 times more as compared to a dedicated server.
+    \item This delay increases even more when the database and the lambda function is not placed in the same location.
+\end{itemize}
+
+
+
+\section{Problem Statement}
+
+\begin{itemize}
+    \item Characterizing latency in serverless architectures with respect to database applications and strategies to improve it.
+    \item Improving performance by placing cache optimally across lambda.
+\end{itemize}
+
+\section{Contributions}
+
+We contribute by studying following latency analysis :
+
+\begin{itemize}
+    \item Between traditional server architectures IaaS and serverless architectures FaaS.
+    \item When same lambda function is accessed by clients from multiple locations.
+    \item Between different type of requests like GET requests (read) and POST requests (write) when deployed using lambda.
+    \item Between different type of caching like in-memory caching and external caching.
+    \item When one lambda calls another lambda (Nested lambda).
+    \item When multiple lambda functions are cascaded at different depths.
+\end{itemize}

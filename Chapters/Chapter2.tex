@@ -1,0 +1,120 @@
+% Related Works - Basically, literature survey
+% 10 related papers - each paper 6-7 lines explaining what they have done
+% Try to put their comparison in a table format
+% Research gap : what is missing in these papers
+
+% Chapter Template
+
+\chapter{Related Works} %
+
+\label{Chapter 2} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 2. \emph{Related Works}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%---------------------------------------------------------------------------------------
+\section{Literature Survey}
+
+Here, we discuss the work done in the past.
+
+In \cite{openlambda}, the authors present OpenLambda, a new, open-source platform for building next-generation web services and applications in the burgeoning model of serverless computation. They have described the key aspects of serverless computation, and present numerous research challenges that must be addressed in the design and implementation of such systems. They also did a brief study of current web applications, so as to better motivate some aspects of serverless application construction.
+
+Akkus et al \cite{Akkus_Sand_Usenix_2018} present SAND, a new serverless computing
+system that provides lower latency, better resource effi-
+ciency and more elasticity than existing serverless plat-
+forms. To achieve these properties, SAND introduces two
+key techniques: 1) application-level sandboxing, and 2)
+a hierarchical message bus. We have implemented and
+deployed a complete SAND system. Our results show 
+that SAND outperforms the state-of-the-art serverless plat-
+forms significantly. For example, in a commonly-used image processing application, SAND achieves a 43\%
+speedup compared to Apache OpenWhisk.
+
+\subsection{Understanding Ephemeral Storage for Serverless Analytics}
+
+Klimovic et al \cite{ephemeral} in their paper explore the suitability of different cloud storage services (e.g., object stores and distributed caches) as remote storage for serverless analytics. Their analysis leads to key insights to guide the design of an ephemeral cloud storage system, including the performance and cost efficiency of Flash storage for server-less application requirements and the need for a pay- what-you-use storage service that can support the high throughput demands of highly parallel applications.
+
+In \cite{Wang_usenix_2018}, the authors explain how the platforms isolate the functions of different accounts, using either virtual machines or containers, which has important security implications. They characterize performance in terms of scalability, coldstart latency, and resource efficiency, with highlights including that AWS Lambda adopts a bin-packing-like strategy to maximize VM memory utilization, that severe contention between functions can arise in AWS and Azure, and that Google had bugs that allow customers to use resources for free.
+
+\section{Research Gap}
+
+\begin{itemize}
+    \item None of the works so far have compared serverless architecture to serverful architecture on the basis of performance.
+    \item Even though most of the serverless applications are web applications that involve interaction with database in the backend, only image processing and data analytics applications have been studied at length.
+    \item Today, many of the serverless platforms have server farms in various parts of the world, hence, strategic placement of lambda functions and databases becomes an important case study for increasing performance of these applications.
+\end{itemize}
+
+% \section{Types of faults}
+
+% \subsection{Crash Faults}
+
+% A replica is said to be crash-faulty if it stops all computation and communication.
+
+% \subsection{Byzantine Faults}
+
+% A replica is said to be Byzantine or non-crash faulty if it acts arbitrarily, but cannot break cryptographic primitives we use (crypto- graphic hashes, MACs, message digests and digital signatures).
+
+% \subsection{Network Faults}
+
+% A network fault is defined as the inability of some correct replicas to communicate with each other in a timely manner, that is, when a message exchanged between two correct replicas cannot be delivered and processed within delay $\Delta$, known to all replicas.
+
+
+% \paragraph{Literature Survey}
+
+% This is a sample. Write about referred papers. Cite like this \citep{nip2010cyclic}. Another example would be this \citep{nip2010extremely}. More citations like this \citep{bird2004evaluating}, \citep {tremblay2003seismic} and \citep {alhamaydeh2016key}.
+
+% \paragraph{Research gaps}
+% Typically include research gaps for your study. 
+% \paragraph{Objective}
+% Similarly objectives of study. 
+% \paragraph{Scope}
+% Define scope of study. 
+% \paragraph{An algorithm}
+% How you could refer to figures: This is an example. (Refer \ref{fig5}). You can add equations like this Eq. (\ref{eq1})
+% \begin{equation}
+% \label{eq1}
+%   SDR = sd(T) - \sum_{i}\frac{{T}_{i}}{|T|}\times sd({T}_{i})
+% \end{equation}
+
+% \begin{figure}[]
+% \centering
+% \includegraphics[height=7cm]{splits.png}
+% \caption{Splitting of the input space (X1 x X2) by M5' model tree algorithm}
+% \label{fig5}
+% \end{figure}
+
+% \section{Adding another section}
+% You can show a lot of figures together like these Figures \ref{fig61}, \ref{fig62}, \ref{fig63} below.
+% \begin{figure} [!htbp]
+% \centering    
+% \subfigure[Caption1]{\label{fig61}\includegraphics[width=42mm]{data1.png}}
+% \subfigure[Caption2]{\label{fig62}\includegraphics[width=42mm]{data2.png}}
+% \subfigure[Caption3]{\label{fig63}\includegraphics[width=42mm]{data3.png}}
+% \caption{Figures sample}
+% \end{figure}
+% You can add lists into the text like this. 
+% \begin{itemize}
+% \settowidth{\leftmargin}{{\Large$\square$}}\advance\leftmargin\labelsep
+% \itemsep3pt\relax
+% \renewcommand\labelitemi{{\lower1pt\hbox{\small$\square$}}}
+% \item	Some sample text item 1. 
+% \item You may refer to tables \ref{tab1} 
+% \item Or figures \ref{fig61}
+% \end{itemize}
+
+% Tables can be added like this
+% \begin{table}[!htbp]
+% \centering
+% \caption{Sample table}
+% \label{tab1}
+% \begin{tabular}{llll}
+
+% \hline
+% Column 1 & Column 2 & Column 3       \\\hline
+% 1         & Data1 & 13.41179 & 0.9492839 \\
+% 2            & Data2 & 13.39824 & 0.9492952\\\hline
+% \end{tabular}
+% \end{table}
+
+

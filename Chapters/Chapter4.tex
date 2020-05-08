@@ -1,0 +1,25 @@
+% Discussion - Discuss the issues that you have got in the system, an idea about how you are trying to solve those. 
+% Chapter Template
+
+\chapter{Proposed Model} % Main chapter title
+
+\label{Chapter 4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 4. \emph{Proposed Model}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+In our experiments, we saw that difference in latencies when using traditional approaches and while using serverless architecture is huge even with cold starts ignored. This difference paves way for solutions where we can minimize this difference and the foremost technique that comes to our mind is caching. Hence, we propose different kinds of caching and through our experiments try to determine how much improvement can we gain with caching.
+
+\section{POST requests (write calls)}
+
+With write calls, the easiest way to achieve performance is by delegating the actual writing to another lambda function asynchronously and spend time only in doing sanity checks of the data to be written. The only problem that will arise is the problem of consistency which will anyway be maintained by the database. This can be done easily by declaring a separate lambda function whose only job is to write data to the database and the actual lambda function can call this function asynchronously without waiting for it to return.
+
+\section{GET requests (read calls)}
+
+With read calls, its imperative to use cache as the data needs to be fetched from the database. If the cache is warm (cache hit) then the response time would be very low but if the cache is cold (cache miss or cache is stale) then the response time would be more as the time spent in fetching data from the database will affect the response time. But usually the performance of these caches is determined when the same data is requested again and again. In this project, we have tried to analyse how different types of cache affect the performance of these function calls. Different types of cache studied is :
+
+\begin{itemize}
+    \item External cache : Here, by external we mean external to the lambda runtime. For this experiment, we use redis as an in-memory cache store between lambda function and the database and we place all the three in same location.
+    \item Internal cache : Here, by internal we mean internal to the runtime executing the lambda function. AWS lambda provides a feature where global variables are shared between different function calls of the same lambda function. But, this feature comes with its own constraints like the global variables are shared between only those function calls which are sharing the session. Once, the container is stopped, session is closed, all the data stored in the global variables is lost. This is also true when multiple sessions are running at the same time when load is very high. These sessions would be working on separate global variables. Not only this, there is a constraint on the runtime of lambda functions and if the calls are not frequent then the cache won't stay warm. A workaround to this is that again delegate the job of fetching data to another lambda function, which also invokes another of its instance just for the sake of keeping cache warm and then returns. But, this technique can only work if latency of calling another lambda function in a nested way is very low.
+\end{itemize}
+
+In our experiments, we would be verifying if above approaches are possible and if so how much performance improvement do they give.

@@ -1,0 +1,274 @@
+% Introduction - 
+% Background : Requirement of serverless, its pros and cons
+
+% Chapter Template
+
+\chapter{Introduction} % Main chapter title
+
+\label{Chapter 1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 1. \emph{Introduction}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+In the current web service age, the deployment of services in off premises is more easy task. The users not even need to estimate their server specifications during the Service Level Agreement (SLA) negotiation. This can be possible by the concept of serverless application or Function as a Service (FaaS) \cite{Wang_usenix_2018}. Popular cloud providers such as Amazon, Microsoft, and Google already introduced their serverless solutions as AWS Lamda\footnote{https://aws.amazon.com/lambda/}, Azure Function\footnote{https://azure.microsoft.com/en-in/solutions/serverless/}, and Google Cloud Function\footnote{https://cloud.google.com/functions/} respectively. Apart from these big players, some new solutions has also started providing the FaaS service \cite{servelless_online_2019}.
+
+\noindent Serverless applications are flexible enough to focus on user's core product and business logic instead of responsibilities like operating system (OS) access control, OS patching, provisioning, right-sizing, scaling, and availability \cite{Lloyd_2018}. By building your application on a serverless platform, the platform manages these responsibilities for you. These new concepts are providing the following capabilities:
+\begin{itemize}
+	\item \textbf{No server management:} Users need not to provision or maintain any servers. There is no software or runtime to install, maintain, or administer.
+	\item \textbf{Flexible scaling:} Users can scale their application automatically or by adjusting its capacity through toggling the units of consumption (for example, throughput, memory etc.) rather than units of individual servers.
+	\item \textbf{High availability:} Serverless applications have built-in availability and fault tolerance. Useres not need to architect for these capabilities because the services running the application provide them by default.
+	\item \textbf{No idle capacity:} Users need not to pay for idle capacity. There is no need to pre-provision or over-provision capacity for things like compute and storage. There is no charge when your code is not running.
+\end{itemize}
+
+%\begin{figure}[!ht]
+%	\centering
+%	\includegraphics[width=0.5\linewidth, height=0.8\columnwidth]{image/serverless_arch.eps}
+%	\caption{Serverless Architecture}\label{fig:serverless_arch}
+%\end{figure} 
+
+%\subsection{Some popular serverless usecasess and their archtechture:}
+Currently, most of the technology adopters are startups who seek for a possibility to scale painlessly and to lower the entrance barrier. Serverless is also a perfect approach for applications that do not run continuously but rather have quiet periods and peaks of traffic. This concept can be useful for a wide range of applications, from a simple database (DB) application to complex data analytics pipeline applications \cite{Bhattacharjee_USENIX_2019}.
+%\begin{enumerate}
+%	\item \textbf{Simple DB appliacation:} For any small scale application such as iteractive web site, ERP solutions etc. Serverless is a good candidate to opt as a deployment technology. Figure \ref{fig:simpleDB_serverless} illustrate a simple DB application.
+%	
+%	\item \textbf{Data analytics pipeline:}
+%	\cite{Bhattacharjee_USENIX_2019}.
+%\end{enumerate}
+% 
+
+%Related work
+In the literature, a few recent works have significantly explored serverless computing from different perspectives. In \cite{Akkus_Sand_Usenix_2018}, a new serverless computing system that provides lower latency, better resource efficiency and more elasticity than existing serverless platforms is discussed. To achieve these properties, authores have introduced a model SAND, based on application-level sandboxing and an hierarchical message bus. Here, the design and implementation of SAND, as well as experience in building and deploying serverless applications on it are presented. In \cite{Oakes_USENIX_2018}, the author has analyzed Linux container primitives, identifying scalability bottlenecks related to storage and network isolation where there is a container system optimized for serverless workloads. Based on these findings, they have implemented SOCK, a container system optimized for serverless workloads model. They have identified container initialization and package dependencies as common causes of slow Lambda startup. In \cite{Hong_USENIX_2018}, author has advocated for taking a serverless approach by proposing six serverless design patterns to build security services in the cloud. For each design pattern, they describe the key advantages and present applications and services utilizing the pattern. Using the proposed patterns as building blocks, they have introduced a threat intelligence platform that collects logs from various sources,  alerts malicious activities, and takes actions against such behaviors.
+
+%%\cite{Ishakian_2018}.
+
+Though advantageous in focusing on the user's business logic rather than the platform management, serverless architectures has latency related issues as it is stateless and need to communicate with data source, other serverless functions. In this paper, we analyze this latency of serving requests for different serverless architectures. First, we take the simplest use case of a database application and compare the performance with the traditional VM based approach. Next, we analyze a more complex data pipeline involving multiple functions and observe how it impacts the overall latency of the service. Then, we propose some simple caching strategies to improve the response times. Finally, we discuss their pitfalls.
+\section{What is Cloud Computing?}
+
+Cloud computing is an internet-based computing service in which large groups of remote servers are
+networked to allow centralized data storage, and online access to computer services or resources.
+
+Using cloud computing, organizations can use shared computing and storage resources rather than building,
+operating, and improving infrastructure on their own.
+
+Cloud computing is a model that enables the following features.
+
+\begin{itemize}
+    \item Users can provision and release resources on-demand.
+    \item Resources can be scaled up or down automatically, depending on the load.
+    \item  Resources are accessible over a network with proper security.
+    \item Cloud service providers can enable a pay-as-you-go model, where customers are charged based on
+the type of resources and per usage.
+\end{itemize}
+
+% \section{Cloud Computing Deployment Models}
+
+% Private cloud services are delivered from a business's data center to internal users. This model offers the
+% versatility and convenience of the cloud, while preserving the management, control and security common to
+% local data centers. Internal users may or may not be billed for services through IT chargeback. Common
+% private cloud technologies and vendors include VMware and OpenStack.
+
+% Public cloud is a third-party cloud service provider delivers the cloud service over the internet. Public cloud
+% services are sold on demand, typically by the minute or hour, though long-term commitments are available
+% for many services. Customers only pay for the CPU cycles, storage or bandwidth they consume. Leading
+% public cloud service providers include Amazon Web Services (AWS), Microsoft Azure, IBM and Google
+% Cloud Platform.
+
+% Hybrid cloud is a combination of public cloud services and an on-premises private cloud, with orchestration
+% and automation between the two. Companies can run mission-critical workloads or sensitive applications on
+% the private cloud and use the public cloud to handle workload bursts or spikes in demand. The goal of a 
+% hybrid cloud is to create a unified, automated, scalable environment that takes advantage of all that a public
+% cloud infrastructure can provide, while still maintaining control over mission-critical data.
+
+\section{Cloud Service Models}
+
+There are three types of service models in cloud : 
+
+\subsection{Infrastructure as a Service (IaaS)}
+It provides users with the capability to provision processing,
+storage, and network connectivity on demand. Using this service model, the customers can develop their own
+applications on these resources.
+
+\subsection{Platform as a Service (PaaS)}
+Here, the service provider provides various services like databases,
+queues, workflow engines, e-mails, etc. to their customers. The customer can then use these components for
+building their own applications. The services, availability of resources and data backup are handled by the
+service provider that helps the customers to focus more on their application's functionality.
+
+\subsection{Software as a Service (SaaS)}
+As the name suggests, here the third-party providers provide enduser applications to their customers with some administrative capability at the application level, such as the
+ability to create and manage their users. Also some level of customizability is possible such as the customers
+can use their own corporate logos, colors, etc.
+
+\section{What is Serverless Computing?}
+
+Serverless most often refers to serverless applications. Serverless applications are the ones that don't require
+you to provision or manage any servers. You can focus on your core product and business logic instead of
+responsibilities like operating system (OS) access control, OS patching, provisioning, right-sizing,scaling,
+and availability. By building your application on a serverless platform, the platform manages these
+responsibilities for you.
+
+For service or platform to be considered serverless, it should provide the following capabilities:
+
+\textbf{No server management} – You don’t have to provision or maintain any servers. There is no software or
+runtime to install, maintain, or administer.
+
+\textbf{Flexible scaling} – You can scale your application automatically or by adjusting its capacity through toggling
+the units of consumption (for example, throughput, memory) rather than units of individual servers.
+
+\textbf{High availability} – Serverless applications have built-in availability and fault tolerance. You don't need to
+architect for these capabilities because the services running the application provide them by default.
+
+\textbf{No idle capacity} – You don't have to pay for idle capacity. There is no need to pre-provision or overprovision capacity for things like compute and storage. There is no charge when your code isn’t running.
+
+The AWS Cloud provides many different services that can be components of a serverless application. These
+include capabilities for:
+
+\begin{itemize}
+    \item Compute – AWS Lambda
+    \item APIs – Amazon API Gateway
+    \item Storage – Amazon Simple Storage Service (Amazon S3)
+    \item Databases –Amazon DynamoDB
+    \item Interprocess messaging – Amazon Simple Notification Service (Amazon SNS) and Amazon Simple
+    \item Queue Service (Amazon SQS)
+    \item Orchestration – AWS Step Functions and Amazon CloudWatch Events
+    \item Analytics – Amazon Kinesis
+\end{itemize}
+
+\section{Pros of Serverless Computing}
+
+\textbf{Cheaper than the traditional cloud} - FaaS allows you to pay a fraction of the price per request. If you’re a
+startup, you can build an MVP nearly for free and ease into the market without dealing with huge bills for
+minimum traffic.
+
+\textbf{Scalable} - Applications get high availability and auto-scalability without additional effort from the developer.
+This can significantly reduce development time and consequently costs.
+
+\textbf{Lower human resources costs} - Just as you don’t have to spend hundreds or thousands of dollars on
+hardware, you can stop paying engineers for maintaining it.
+
+\textbf{Ability to focus on user experience} - Abstraction from servers allows companies to dedicate more time and
+resources to developing and improving customer-facing features.
+
+\section{Cons of Serverless Computing}
+
+\textbf{Vendor lock-in} - When you give a vendor the reins to control your operations, you have to play by their
+rules. It’s also not easy to port your application to Azure if you’ve already set it up on Lambda. The same
+concern refers to coding languages: Right now, only Node.js and Python developers have the freedom to
+choose between existing serverless options.
+
+\textbf{Learning curve} - Despite the comprehensive documentation and community resources, you may soon find
+out that the learning curve for FaaS tools is pretty steep. Also, to painlessly migrate to serverless, you might
+want to split your monolith into microservices, another complicated task to tackle. That’s why it’s preferable
+to get help from professionals experienced in serverless tools.
+
+\textbf{Unsuitable for long term tasks} - Lambda gives you five minutes to execute a task and if it takes longer,
+you’ll have to call another function. Serverless is great for short real-time or near-real-time processes like 
+sending out emails. But long duration operations such as uploading video files would require additional FaaS
+functions or be better with “server-ful” architecture.
+
+\section{Use Cases of Serverless Computing}
+
+Currently, most of the technology adopters are startups who seek for a possibility to scale painlessly and
+lower the entrance barrier. Serverless is also a perfect approach for applications that don’t run continuously
+but rather have quiet periods and peaks of traffic
+
+\textbf{Internet of Things applications} - The real-time response nature of the serverless approach works great for
+IoT use cases. Motion activated cameras that we’ve already mentioned, along with applications that react to
+changes in weather, temperature, or health conditions are perfect for the serverless paradigm that won’t allow
+your services to sit idle 24/7.
+
+\textbf{Virtual assistants and chatbots} - People using chats expect immediate responses which is why serverless
+data processing can be faster. As your application grows from one hundred to several thousand users, your
+processing time should also stay the same which is automated with FaaS.
+
+\textbf{Image-rich applications} - To maintain great user experience, developers have to provide multiple versions
+of the same images for different screen sizes – from desktops, tablets and smartphones. This significantly
+decreases loading time. However, the tooling from AWS and Google will automatically optimize your
+images for any needs, making it a perfect solution for image-heavy applications.
+
+\textbf{Agile and Continuous Integration pipelines} - The idea of running the code only when a certain event is
+triggered is perfectly in line with Agile or Continuous Integration principles. Separating your codebase into
+functions also helps with bug fixing and shipping updates. Serverless is an overall friendly way for maximum
+automation and rapid deployment processes.
+
+\section{Service Providers}
+
+Most, but not all, serverless vendors offer compute runtimes, also known as function as a service (FaaS) platforms, which execute application logic but do not store data. The first "pay as you go" code execution platform was Zimki, released in 2006, but it was not commercially successful. In 2008, Google released Google App Engine, which featured metered billing for applications that used a custom Python framework, but could not execute arbitrary code. PiCloud, released in 2010, offered FaaS support for Python.
+
+AWS Lambda, introduced by Amazon in 2014, was the first public cloud infrastructure vendor with an abstract serverless computing offering.
+
+Google Cloud Platform offers Google Cloud Functions since 2016.
+
+IBM offers IBM Cloud Functions in the public IBM Cloud since 2016.
+
+Microsoft Azure offers Azure Functions, offered both in the Azure public cloud or on-premises via Azure Stack.
+
+Oracle introduced Fn Project, an open source serverless computing framework offered on Oracle Cloud Platform and available on GitHub for deployment on other platforms.
+
+In addition, there are a number of open source serverless projects with various levels of popularity and usage:
+
+OpenWhisk was initially developed by IBM with contributions from RedHat, Adobe, and others. OpenWhisk is the core technology in IBM Cloud Functions.
+
+Project Riff is an open source serverless platform implementation built on Kubernetes by Pivotal Software. Project Riff is the foundation of Pivotal Function Service.
+
+% \paragraph{Literature Survey}
+
+% This is a sample. Write about referred papers. Cite like this \citep{nip2010cyclic}. Another example would be this \citep{nip2010extremely}. More citations like this \citep{bird2004evaluating}, \citep {tremblay2003seismic} and \citep {alhamaydeh2016key}.
+
+% \paragraph{Research gaps}
+% Typically include research gaps for your study. 
+% \paragraph{Objective}
+% Similarly objectives of study. 
+% \paragraph{Scope}
+% Define scope of study. 
+% \paragraph{An algorithm}
+% How you could refer to figures: This is an example. (Refer \ref{fig5}). You can add equations like this Eq. (\ref{eq1})
+% \begin{equation}
+% \label{eq1}
+%   SDR = sd(T) - \sum_{i}\frac{{T}_{i}}{|T|}\times sd({T}_{i})
+% \end{equation}
+
+% \begin{figure}[]
+% \centering
+% \includegraphics[height=7cm]{splits.png}
+% \caption{Splitting of the input space (X1 x X2) by M5' model tree algorithm}
+% \label{fig5}
+% \end{figure}
+
+% \section{Adding another section}
+% You can show a lot of figures together like these Figures \ref{fig61}, \ref{fig62}, \ref{fig63} below.
+% \begin{figure} [!htbp]
+% \centering    
+% \subfigure[Caption1]{\label{fig61}\includegraphics[width=42mm]{data1.png}}
+% \subfigure[Caption2]{\label{fig62}\includegraphics[width=42mm]{data2.png}}
+% \subfigure[Caption3]{\label{fig63}\includegraphics[width=42mm]{data3.png}}
+% \caption{Figures sample}
+% \end{figure}
+% You can add lists into the text like this. 
+% \begin{itemize}
+% \settowidth{\leftmargin}{{\Large$\square$}}\advance\leftmargin\labelsep
+% \itemsep3pt\relax
+% \renewcommand\labelitemi{{\lower1pt\hbox{\small$\square$}}}
+% \item	Some sample text item 1. 
+% \item You may refer to tables \ref{tab1} 
+% \item Or figures \ref{fig61}
+% \end{itemize}
+
+% Tables can be added like this
+% \begin{table}[!htbp]
+% \centering
+% \caption{Sample table}
+% \label{tab1}
+% \begin{tabular}{llll}
+
+% \hline
+% Column 1 & Column 2 & Column 3       \\\hline
+% 1         & Data1 & 13.41179 & 0.9492839 \\
+% 2            & Data2 & 13.39824 & 0.9492952\\\hline
+% \end{tabular}
+% \end{table}
+
+

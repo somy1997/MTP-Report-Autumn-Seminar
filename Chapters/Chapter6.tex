@@ -1,0 +1,30 @@
+% Conçlusion and Future Works. 
+% Chapter Template
+
+\chapter{Conclusion and Future Works} % Main chapter title
+
+\label{Chapter 6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+\lhead{Chapter 6. \emph{Conclusion and Future Works}} % Change X to a consecutive number; this is for the header on each page - perhaps a shortened title
+
+\section{Conclusion}
+
+In this project, we did many analysis regarding latency in serverless frameworks which lead us to following conclusions :
+
+\begin{itemize}
+    \item Even though serverless has so many benefits, performance wise it still lags behind traditional approaches.
+    \item Experiments done in this project give us important insights on working of serverless platforms, specifically AWS lambda.
+    \item Shared global variables provide an easy way of caching but we need to find some turnaround for sharing these variables across runtimes.
+    \item We also observe that the 2 functions had individual cold starts, this implies that they are running in separate runtimes.
+    \item Multiple lambda functions can be cascaded to overcome time constraints for time-intensive applications.
+    \item Multiple lambda functions can be combined if the series of lambda functions to be used is known beforehand to reduce response time.
+    \item There is scope for further evolution of serverless architectures by sharing runtimes.
+\end{itemize}
+
+\section{Future Works}
+
+In future we would like to achieve the following objectives :
+\begin{enumerate}
+    \item We would like to study what kind of queuing mechanisms is being used for these invocations and suggest methods to improve latency.
+    \item Current platforms use separate runtimes for individual functions. We would like to explore whether we can share this runtime across separate functions. This would also mitigate the problem of cold start and the increased response time due to queuing.
+\end{enumerate}
