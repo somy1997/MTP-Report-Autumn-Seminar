@@ -1,6 +1,5 @@
-This format has been developed by Sarthak Jain (Email: sarthakjain939@gmail.com) for help in writing a thesis as per standards followed in IIT Kharagpur with help from thesis templates from www.sharelatex.com. 
-
-Feel free to use this, improve and add your contribution to the KGP community. 
+This paper summarises the work done on the topic "Serverless Cloud Computing" as MTP under the supervision of Prof. Sandip Chakraborty in Autumn Semester by Nishant Baranwal Somy at Department of Computer Science and Engineering at IIT Kharagpur. The format used was originally developed by Sarthak Jain.
 
 Cheers!
-Sarthak
+
+Nishant
